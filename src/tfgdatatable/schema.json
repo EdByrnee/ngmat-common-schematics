@@ -1,0 +1,50 @@
+{
+	"$schema": "http://json-schema.org/schema",
+	"id": "HelloSchematics",
+	"title": "Angular Workspace Options Schema",
+	"description" : "Say hello to someone",
+	"type": "object",
+	"properties": {
+		"path": {
+			"description": "The path of the component to add the table to e.g. jobs/jobs-list",
+			"type": "string",
+			"$default": {
+				"$source": "argv",
+				"index": 0
+			},
+			"x-prompt" : "The path of the component to add the table to e.g. jobs/jobs-list"
+		},
+		"name": {
+			"description": "Name of table",
+			"type": "string",
+			"$default": {
+				"$source": "argv",
+				"index": 0
+			},
+			"x-prompt" : "Name of the table? e.g. JobsList"
+		},
+		"columns": {
+			"description": "Names of columns, separated by a comma e.g. id,job_name,policy_holder_name,JobStatusId",
+			"type": "string",
+			"$default": {
+				"$source": "argv",
+				"index": 0
+			},
+			"x-prompt" : "Names of columns, followed by if you would like to enable sorting on that column, separated by a comma then a * e.g. id*n,job_name*y,policy_holder_name*n,JobStatusId*y"
+		},
+		"paginator": {
+			"description": "Include paginator?",
+			"type": "boolean",
+			"$default": {
+				"$source": "argv",
+				"index": 0
+			},
+			"x-prompt" : "Include pagniator?"
+		}
+	},
+	"required": [
+		"name",
+		"path",
+		"columns"
+	]
+}

@@ -1,0 +1,21 @@
+<% const name = path.split("/").pop(); %>
+<div class="error" *ngIf="error">
+  
+</div>
+
+<div class="loading" *ngIf="loading">
+  Loading...
+</div>
+
+<!-- Page header if required -->
+<!--<tfg-page-header-->
+<!--    [error]="error"-->
+<!--    [errorText]="'There was an error while loading this page'"-->
+<!--    [title]="<$= name %> Page">-->
+<!--</tfg-page-header>-->
+
+<div *ngIf="!loading" class="page content">
+  
+  <h1>Here is the main page content</h1>
+  
+</div>

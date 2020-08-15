@@ -1,0 +1,25 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "crudtemplateservice": {
+      "description": "A blank schematic.",
+      "factory": "./crudtemplateservice/index#crudtemplateservice",
+      "schema": "./crudtemplateservice/schema.json"
+    },
+    "tfgdatatable": {
+      "description": "A basic data table.",
+      "factory": "./tfgdatatable/index#tfgdatatable",
+      "schema": "./tfgdatatable/schema.json"
+    },
+    "tfgdialog": {
+      "description": "A basic dialog",
+      "factory": "./tfg-dialog/index#tfgdialog",
+      "schema": "./tfg-dialog/schema.json"
+    },
+    "tfgpage": {
+      "description": "A basic page",
+      "factory": "./tfg-page/index#tfgpage",
+      "schema": "./tfg-page/schema.json"
+    }
+  }
+}

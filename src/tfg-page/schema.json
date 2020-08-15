@@ -1,0 +1,21 @@
+{
+	"$schema": "http://json-schema.org/schema",
+	"id": "HelloSchematics",
+	"title": "Angular Workspace Options Schema",
+	"description" : "Create a page",
+	"type": "object",
+	"properties": {
+		"path": {
+			"description": "The path of the page e.g. jobs/jobs-list this will create JobsListPage",
+			"type": "string",
+			"$default": {
+				"$source": "argv",
+				"index": 0
+			},
+			"x-prompt" : "The path of the page e.g. jobs/jobs-list this will create JobsListPage"
+		}
+	},
+	"required": [
+		"path"
+	]
+}

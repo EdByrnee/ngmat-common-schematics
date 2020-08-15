@@ -1,0 +1,21 @@
+{
+	"$schema": "http://json-schema.org/schema",
+	"id": "HelloSchematics",
+	"title": "Angular Workspace Options Schema",
+	"description" : "Say hello to someone",
+	"type": "object",
+	"properties": {
+		"name": {
+			"description": "The name of the RESTful object",
+			"type": "string",
+			"$default": {
+				"$source": "argv",
+				"index": 0
+			},
+			"x-prompt" : "Name of the RESTful object? (singular)"
+		}
+	},
+	"required": [
+		"name"
+	]
+}
