@@ -1,6 +1,8 @@
-import { Component, OnInit } from '../../../../../tfg-data-service/files/src/app/__path@dasherize__-page/node_modules/@angular/core';
-import { ActivatedRoute, Router } from '../../../../../tfg-data-service/files/src/app/__path@dasherize__-page/node_modules/@angular/router';
-import { MatSnackBar}  from '@angular/material/snack-bar';
+import { Component, OnInit } from './node_modules/@angular/core';
+import { ActivatedRoute, Router } from './node_modules/@angular/router';
+import { AppPageComponent } from './node_modules/src/app/app-page.component';
+import { MatSnackBar } from './node_modules/@angular/material/snack-bar';
+import { AppService } from './node_modules/src/app/app.service';
 
 <% const name = path.split("/").pop(); %>
 
@@ -14,17 +16,14 @@ export class <%= classify(name) %>PageComponent implements OnInit {
   loading:boolean = false;
   error:boolean = true;
 
-  constructor(
-    private dataService: DataService,
-    private snackbar: SnackbarService,
-    private route: ActivatedRoute,
-    private router: Router) {
-      super(snackbar);
+  constructor(private snackbar: SnackbarService, private route: ActivatedRoute, private router: Router) {
+    super(snackbar);
   }
   
   ngOnInit() {
     this.initPageLoad();
   }
+
 
   initPageLoad(){
     this.loading = true;
@@ -32,22 +31,20 @@ export class <%= classify(name) %>PageComponent implements OnInit {
     return Promise.all([
       this.loadData()
     ]).then(data=>{
-      this.snackbar.open("Successfully loaded data for page","DISMISS", {'duration' : 3000});
+      this.snackbar.open("Successfully loaded data for page","DISSMISS", {'duration' : 3000});
       this.loading = false;
-      this.error = true;
     }).catch(err=>{
       this.handleHttpError(err,true);
     })
   }
 
-  loadData(){
+  loadData(): Promise<any>{
     return this.dataService.loadObjects({
       'limit' : 1000
     }).then(data=>{
       this.data = data['data'];
     })
   }
-
 
 
 }

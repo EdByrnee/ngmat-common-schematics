@@ -2,14 +2,14 @@ import { Component, OnInit } from '../../../../../tfg-data-service/files/src/app
 import { ActivatedRoute, Router } from '../../../../../tfg-data-service/files/src/app/__path@dasherize__-page/node_modules/@angular/router';
 import { MatSnackBar}  from '@angular/material/snack-bar';
 
-<% const name = path.split("/").pop(); %>
+
 
 @Component({
-  selector: '<%= dasherize(name) %>-page',
-  templateUrl: './<%= dasherize(name) %>-page.component.html',
-  styleUrls: ['./<%= dasherize(name) %>-page.component.scss']
+  selector: 'page-list-page',
+  templateUrl: './page-list-page.component.html',
+  styleUrls: ['./page-list-page.component.scss']
 })
-export class <%= classify(name) %>PageComponent implements OnInit {
+export class PageListPageComponent implements OnInit {
 
   loading:boolean = false;
   error:boolean = true;
@@ -43,11 +43,7 @@ export class <%= classify(name) %>PageComponent implements OnInit {
   loadData(){
     return this.dataService.loadObjects({
       'limit' : 1000
-    }).then(data=>{
+    ).then(data=>{
       this.data = data['data'];
-    })
-  }
-
-
-
-}
+    )
+  

@@ -4,12 +4,12 @@ import { Rule, SchematicContext, Tree, apply, mergeWith, template, url } from '@
 // Contains helper functions like dasherize classerize etc...
 import { strings } from "@angular-devkit/core";
 
-import { Schema } from './schema.d';
+import { Schema } from './schema';
 
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function crudtemplateservice(_options: Schema): Rule {
+export function generate(_options: Schema): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     
       const sourceTemplates = url("./files");

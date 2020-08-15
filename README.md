@@ -7,13 +7,23 @@
     - schematics tfg-common-schematics:tfgdatatable --dry-run=false --path=output/accounts/accounts-list --name=AccountsList --columns=account_name*n,account_type_name*n,count*n
     - schematics tfg-common-schematics:tfgdialog
 
-## tfgpage
-Provide the column names and create a data table.
-#### Example
+## Development
+Make sure you have both the tsc and typescript packages installed 
+
+    schematics .:tfgpage --dry-run=false --path=../../output/test-page/page-list
+    
+
+
+#### Running the schematics
 
     schematics tfg-common-schematics:tfgpage --dry-run=false --path=output/accounts/accounts-list 
+
     
-#### Page Component
+## TFG-Page Component
+
+    schematics tfg-common-schematics:tfgpage --dry-run=false --path=output/test-page/page-list
+    
+
 Creates a page which:
 - is automatically named componentname-page
 - extends the app-page base component from which all pages inherit

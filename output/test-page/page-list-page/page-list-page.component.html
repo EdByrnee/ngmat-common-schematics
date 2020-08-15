@@ -1,0 +1,45 @@
+
+<div class="error" *ngIf="error">
+  
+</div>
+
+<div class="loading" *ngIf="loading">
+  Loading...
+</div>
+
+<!-- Page header if required -->
+<!--<tfg-page-header-->
+<!--    [error]="error"-->
+<!--    [errorText]="'There was an error while loading this page'"-->
+<!--    [title]="<$= name %> Page">-->
+<!--</tfg-page-header>-->
+
+<div *ngIf="!loading" class="page content">
+  
+  <h1>Here is the main page content</h1>
+  
+</div>
+  <!--- BELOW IS CREATEJOB DIALOG -->
+  <div class="dialog-bg" *ngIf="create_j_ob_dialog_visible" (click)="create_j_ob_dialog_visible = false"></div>
+  <p-dialog header="Dialog" [(visible)]="create_j_ob_dialog_visible">
+    <div class='dialog-content' *ngIf='create_j_ob_dialog_loading '>
+  
+    <h4>Dialog Title</h4>
+
+  
+      <button color="warn" mat-button (click)="create_j_ob_dialog_visible = false">
+        CANCEL
+      </button>
+      <button mat-button color='primary' (click)="createJOb()">
+        CREATE
+      </button>
+
+    </div>
+    <div class='dialog-content-loading' *ngIf='create_j_ob_dialog_loading '>
+  
+      Loading. Please wait.
+  
+    </div>
+  </p-dialog>
+  <!--- ABOVE IS CREATEJOB DIALOG -->
+  

@@ -136,8 +136,8 @@ function ClassToUnderscore(s:string) {
 
 function makeTypescript(name:any){
 
-  let dialog_visible_var_name = ClassToUnderscore(name) + "_dialog_visible";
-  let dialog_loading_var_name = ClassToUnderscore(name) + "_dialog_loading";
+  let dialog_visible_var_name = ClassToUnderscore(name);
+  let dialog_loading_var_name = ClassToUnderscore(name) + "_loading";
   let dialog_action_function_name = classify(name);
 
 let ts = `
@@ -147,7 +147,7 @@ let ts = `
   ${dialog_visible_var_name}: boolean = false;
   ${dialog_loading_var_name}: boolean = false;
 
-  ${dialog_action_function_name}(){
+  ${ camelize(dialog_action_function_name)}(){
     this.${dialog_loading_var_name} = true;
     this.data_service_here.createThing().then(success=>{
       this.initPageLoad();
