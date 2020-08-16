@@ -10,6 +10,9 @@
 ## Development
 Make sure you have both the tsc and typescript packages installed 
 
+    schematics .:tfg-page --dry-run=false --path=../../output/test-page/page-list
+    
+
     schematics .:tfgpage --dry-run=false --path=../../output/test-page/page-list
     
 
@@ -30,6 +33,37 @@ Creates a page which:
 - injects route, route, app-page etc. deps
 - set up the html for loading, error, content and page header
 - onPageLoad() function for init page data load
+
+
+## TFG-Page Component
+
+    schematics tfg-common-schematics:tfg-form --dry-run=false --path=output/test-page/page-list --fields=type:text*name:job_name,type:select*name:JobId*object_name:job
+    (dev) schematics .:tfg-form --dry-run=false --path=./output/test-page/page-list-page --fields=type:text*name:job_name,type:select*name:JobId*object_name:job
+
+Creates a Form and a Form Group, provide the fields in the format: type:text*name:job_name,type:select*name:JobId*object_name:job
+
+
+First provide type:number
+
+Choose from from:
+- text
+    options:
+        name: the name of the formControl
+- select
+    options:
+        name: the name of the formControl
+        object_name: the name of the object, used to create the iterator e.g. let j of jobs
+- number
+    options:
+        name: the name of the formControl
+- textarea
+    options:
+        name: the name of the formControl
+
+Also provide the path and name/options of each formControl
+
+    schematics tfg-common-schematics:tfg-form --dry-run=false --path=output/test-page/page-list
+
 
 
 ## tfgdatatable

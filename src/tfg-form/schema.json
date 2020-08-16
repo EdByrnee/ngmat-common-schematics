@@ -14,6 +14,15 @@
 			},
 			"x-prompt" : "The path of the component to add the table to e.g. src/app/accounts/accounts-list"
 		},
+		"form_name": {
+			"description": "The name of the form e.g. newJobsFormGroup",
+			"type": "string",
+			"$default": {
+				"$source": "argv",
+				"index": 0
+			},
+			"x-prompt" : "The path of the component to add the table to e.g. src/app/accounts/accounts-list"
+		},
 		"fields": {
 			"description": "The name of the form fields along with thier type in the format input_name*input_type-option_one-option_two e.g. name*string,category*select-categories_array-category_name",
 			"type": "string",

@@ -1,14 +1,25 @@
+///////////////////////////////////////////////////////////////////////////////////
+//                                  IMPORTS                                      //
+///////////////////////////////////////////////////////////////////////////////////
 import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { SchematicsException } from '@angular-devkit/schematics';
-
-// Contains helper functions like dasherize classerize etc...
+import { getFormFieldHtml } from './functions/get_form_field_html';
 import { Schema } from './schema';
-import { type } from 'os';
+import { insertAtGivenPointInterface, GivenPoint } from '../_shared/finder/main';
+//import { type } from 'os';
 //import { classify, camelize } from '@angular-devkit/core/src/utils/strings';
 
-// You don't have to export the function as default. You can also have more than one rule factory
-// per file.
-export function tfgdialog(_options: Schema): Rule {
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////
+//                                  MAIN                                         //
+///////////////////////////////////////////////////////////////////////////////////
+
+export function main(_options: Schema): Rule {
   return (tree: Tree, _context: SchematicContext) => {
  
 
@@ -30,23 +41,23 @@ export function tfgdialog(_options: Schema): Rule {
     if (!ts) throw new SchematicsException(`file does not exist at ` + ts_path);
     if (!css) throw new SchematicsException(`file does not exist at ` + css);
 
-    // Tranform the input
-    var fields = _options.fields.split(",")
+    // Break up the properties of each field
+    let fields:any = getUserOptionsObject(_options.fields);
 
 
     // SET UP THE VARIABLES
-    html                    = html.toString("utf-8");
-    css                     = css.toString("utf-8");
-    ts                      = ts.toString("utf-8");
+    let original_html                    = html.toString("utf-8");
+    let original_css                     = css.toString("utf-8");
+    let original_ts                      = ts.toString("utf-8");
 
-    // WHERE TO INSERT THE CODE
-    // Remove last curley brace
-    ts = removeFinalChar(ts, "}");
+    let html_insersions = makeHtml(_options.form_name, fields);
+    let css_insersions = makeCSS();
+    let ts_insersions = makeTypescript(_options.form_name, fields);
 
     // Make the code
-    let table_html = html + makeHtml(fields);
-    let table_ts = ts + makeTypescript(fields);
-    let table_css = css + makeCSS();
+    let final_html = insertAtGivenPoints(original_html,html_insersions);
+    let final_css = insertAtGivenPoints(original_css,css_insersions);
+    let final_ts = insertAtGivenPoints(original_ts,ts_insersions);
 
 
     // COMMIT THE CHANGES
@@ -60,12 +71,10 @@ export function tfgdialog(_options: Schema): Rule {
 }
 
 
-////////////////////////////////////////////////////////////////////
-//                        MAKE CSS                                //
-////////////////////////////////////////////////////////////////////
-
-// Dialog styling should be in the global stylesheet
-function makeCSS(){
+///////////////////////////////////////////////////////////////////////////////////
+//                                  MAKE CSS                                     //
+///////////////////////////////////////////////////////////////////////////////////
+function makeCSS(): insertAtGivenPointInterface[]{
   let css = 
 `
   .vertical-form{
@@ -74,22 +83,46 @@ function makeCSS(){
   }
 
 `
-  return css;
+  return [
+    {
+      insert: css,
+      at: GivenPoint.END_OF_CSS
+    }
+  ]
 }
 
 
-////////////////////////////////////////////////////////////////////
-//                        MAKE TS                                 //
-////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+//                                  MAKE TYPESCRIPT                              //
+///////////////////////////////////////////////////////////////////////////////////
 
-function makeTypescript(name:any){
+function makeTypescript(form_name:string, fields:any[]): insertAtGivenPointInterface[]{
 
-  let variable_1 = '';
+  // Make the formGroup variable
+  let form_group_var = form_name + ':FormGroup;'
 
-  variable_1 = variable_1 + name + '}';
+  // Init the form group in the constructor
+  let form_ts = '';
+  for (let f of fields){
+    form_ts = form_ts + `"${ f.field_name}" : [null]`
+  }
+  let constructor_ts = `
+    this.${ form_name } = new FormGroup({
+        ${ form_ts }
+    })
+  `;
 
-  let ts = '';
-  return ts;
+
+  return [
+    {
+      insert: constructor_ts,
+      at: GivenPoint.TS_END_OF_CONSTRUCTOR
+    },
+    {
+      insert: form_group_var,
+      at: GivenPoint.TS_END_OF_VARS
+    }
+  ]
 
 }
 
@@ -99,55 +132,39 @@ function makeTypescript(name:any){
 //                        MAKE HTML                               //
 ////////////////////////////////////////////////////////////////////
 
-function makeHtml(fields: any[]){
+function makeHtml(form_name:string, fields: any[]): insertAtGivenPointInterface[]{
   let form_html = '';
 
   for (let f of fields){
-    form_html = form_html + `
-      <mat-form-field>
-        <input matInput type='${ getFormType }' >'        
-      </mat-form-field>
-    `
+    form_html = form_html + getFormFieldHtml(f)
   }
 
-  let ts = `
-    <form [formGroup]=''>
+  let h = `
+    <form [formGroup]='${form_name}'>
 
-
+    ${ form_html }
 
     </form>
   `;
 
   
   ;
-  return ts;
+  return [
+    {
+      insert: h,
+      at: GivenPoint.END_OF_HTML
+    }
+  ]
 }
 
 
 
 
-////////////////////////////////////////////////////////////////////
-//                        HELPER FUNCTIONS                        //
-////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+//                            HELPER FUNCTIONS                                   //
+///////////////////////////////////////////////////////////////////////////////////
 
-// function ClassToUnderscore(s:string) {
-//   return s.split(/(?=[A-Z])/).join('_').toLowerCase();
-// }
 
-function getFormType(name:string, type:string){
-  switch(type){
-    case 'select':
-      return `
-        <mat-select formControlName='${ name } '>
-          <mat-option *ngFor='let o of object' [value]='o.id'>
-            {{ o.name}}
-          <mat-option>
-        <mat-selection>
-        `
-    default:
-      return type;
-  }
-}
 
 function removeFinalChar(ts:any ,char: any){
   let final_occur = ts.lastIndexOf(char);
@@ -162,8 +179,22 @@ function afterSlash(stringVariable:string){
 }
 
 
+function getUserOptionsObject(fields: string){
+  // Break up into the indiviual fields
+  let array_of_fields = fields.split(",")
+  return array_of_fields.map(f=>{
+    let object_and_keys = f.split('*');
+    var obj:any = {};
+    for (let obj_k of object_and_keys){
 
+      let key  = obj_k.split(':')[0];
+      let value = obj_k.split(':')[1]
 
+      obj[key] = value
+    }
 
+    return obj;
+  })
+}
 
 

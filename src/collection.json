@@ -23,7 +23,7 @@
     },
     "tfg-form": {
       "description": "Form and form Group",
-      "factory": "./tfg-form/index#tfgpage",
+      "factory": "./tfg-form/index#main",
       "schema": "./tfg-form/schema.json"
     }
   }
