@@ -5,7 +5,7 @@ import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { SchematicsException } from '@angular-devkit/schematics';
 import { getFormFieldHtml } from './functions/get_form_field_html';
 import { Schema } from './schema';
-import { insertAtGivenPointInterface, GivenPoint } from '../_shared/finder/main';
+import { insertAtGivenPointInterface, GivenPoint, insertAtGivenPoints } from '../_shared/finder/main';
 //import { type } from 'os';
 //import { classify, camelize } from '@angular-devkit/core/src/utils/strings';
 
@@ -61,9 +61,9 @@ export function main(_options: Schema): Rule {
 
 
     // COMMIT THE CHANGES
-    tree.overwrite(html_path, table_html);
-    tree.overwrite(css_path, table_css);
-    tree.overwrite(ts_path, table_ts);
+    tree.overwrite(html_path, final_html);
+    tree.overwrite(css_path, final_css);
+    tree.overwrite(ts_path, final_ts);
 
     return tree;
 
