@@ -25,7 +25,7 @@ export function getFormFieldHtml(opts:any){
         case 'text':
             return `
             <mat-form-field>
-              <input matInputformControlName='${ capitalize(opts['_name']) } type='text' placeholder=''>
+              <input matInputformControlName='${ capitalize(opts['name']) } type='text' placeholder=''>
             </mat-form-field>
         `
         case 'textarea':

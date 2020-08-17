@@ -10,5 +10,5 @@ export interface insertAtGivenPointInterface {
     at: GivenPoint;
     insert: string;
 }
-export declare function insertAtGivenPoint(insersion: insertAtGivenPointInterface, orginal: string): string | undefined;
+export declare function insertAtGivenPoint(insersion: insertAtGivenPointInterface, orginal: string): string;
 export declare function insertAtGivenPoints(original: any, insersions: insertAtGivenPointInterface[]): any;

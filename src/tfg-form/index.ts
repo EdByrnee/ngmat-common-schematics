@@ -6,7 +6,7 @@ import { SchematicsException } from '@angular-devkit/schematics';
 import { getFormFieldHtml } from './functions/get_form_field_html';
 import { Schema } from './schema';
 import { insertAtGivenPointInterface, GivenPoint, insertAtGivenPoints } from '../_shared/finder/main';
-// import { type } from 'os';
+//import { type } from 'os';
 // import { classify, camelize } from '@angular-devkit/core/src/utils/strings';
 
 
@@ -46,8 +46,16 @@ export function main(_options: Schema): Rule {
 
 
     // COMMIT THE CHANGES
+    console.log("Outputting the changes...");
+    console.log('HTML is...');
+    console.log(final_html);
+    console.log('CSS is...');
+    console.log(final_css);
+    console.log('TS is...');
+    console.log(final_ts);
     commitChanges(tree, _options.path, final_html, final_css, final_ts);
 
+    console.log('Schematic has fished, returning to user');
     return tree;
 
   };
@@ -172,6 +180,7 @@ function getUserOptionsObject(fields: string){
 
 function loadHtmlAndValidate(tree:any, path:string){
   let html_path =  path + afterSlash(path) + ".component.html";
+  //console.log(tree);
   let html = tree.read(html_path);
   if (!html) throw new SchematicsException(`file does not exist at ` + html_path);
   return html.toString("utf-8");
@@ -195,6 +204,7 @@ function commitChanges(tree:any, path: string, final_html:string, final_css:stri
   let html_path =  path + afterSlash(path) + ".component.html";
   let css_path = path + afterSlash(path) + ".component.scss";
   let ts_path = path + afterSlash(path) + ".component.ts";
+  console.log('Outputting to path ' + html_path);
   tree.overwrite(html_path, final_html);
   tree.overwrite(css_path, final_css);
   tree.overwrite(ts_path, final_ts);

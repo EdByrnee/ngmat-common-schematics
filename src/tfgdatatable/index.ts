@@ -13,7 +13,7 @@ import { SchematicsException } from '@angular-devkit/schematics';
 // schematics .:tfgdatatable --dry-run=false --path=demo/demo-table-page --name=Demo --columns=job_name*y,client_name*y,policy_holder_name*n,job_postcode*n,job_address*n,JobStatusId*y,AssignedSurveyorId*y --paginator=true
 
 
-// schematics .:tfgdatatable --dry-run=false --path=output/accounts/accounts-list --name=AccountsList --columns=account_name*n,account_type_name*n,count*n
+// schematics .:tfg-data-table --dry-run=false --path=output/test-page/page-list-page --name=AccountsList --columns=account_name*n,account_type_name*n,count*n
 
 
 import { Schema } from './schema.d';
@@ -63,7 +63,9 @@ export function tfgdatatable(_options: Schema): Rule {
     let table_css = css + makeCSS();
 
 
+    console.log("Outputting the changes...");
     // COMMIT THE CHANGES
+    console.log('Outputting to path ' + html_path);
     tree.overwrite(html_path, table_html);
     tree.overwrite(css_path, table_css);
     tree.overwrite(ts_path, table_ts);
@@ -72,7 +74,6 @@ export function tfgdatatable(_options: Schema): Rule {
 
   };
 }
-
 
 function removeFinalChar(ts:any ,char: any){
   let final_occur = ts.lastIndexOf(char);

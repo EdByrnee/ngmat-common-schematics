@@ -37,8 +37,8 @@ Creates a page which:
 
 ## TFG-Page Component
 
-    schematics tfg-common-schematics:tfg-form --dry-run=false --path=output/test-page/page-list --fields=type:text*name:job_name,type:select*name:JobId*object_name:job
-    (dev) schematics .:tfg-form --dry-run=false --path=./output/test-page/page-list-page --fields=type:text*name:job_name,type:select*name:JobId*object_name:job
+    schematics tfg-common-schematics:tfg-form --dry-run=false --path=output/test-page/page-list-page --fields=type:text*name:job_name,type:select*name:JobId*object_name:job
+    (dev) schematics .:tfg-form --dry-run=false --path=output/test-page/page-list-page --form_name=newJobsFormGroup --fields=type:text*name:job_name
 
 Creates a Form and a Form Group, provide the fields in the format: type:text*name:job_name,type:select*name:JobId*object_name:job
 

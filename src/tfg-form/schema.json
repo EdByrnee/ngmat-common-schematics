@@ -21,7 +21,7 @@
 				"$source": "argv",
 				"index": 0
 			},
-			"x-prompt" : "The path of the component to add the table to e.g. src/app/accounts/accounts-list"
+			"x-prompt" : "The name of the form e.g. newJobsFormGroup"
 		},
 		"fields": {
 			"description": "The name of the form fields along with thier type in the format input_name*input_type-option_one-option_two e.g. name*string,category*select-categories_array-category_name",
@@ -30,7 +30,7 @@
 				"$source": "argv",
 				"index": 0
 			},
-			"x-prompt" : "The path of the component to add the table to e.g. src/app/accounts/accounts-list"
+			"x-prompt" : "The name of the form fields along with thier type in the format type:text*name:job_name,type:select*name:JobId*object_name:job,category*select-categories_array-category_name"
 		}
 	},
 	"required": [

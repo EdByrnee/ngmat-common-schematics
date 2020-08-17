@@ -1,4 +1,6 @@
 import { insertAfterImports} from './functions/insert_after_imports';
+import { insertAtEndOfCss } from './functions/insert_end_of_css';
+import { insertAtEndOfHtml } from './functions/insert_end_of_html';
 
 export enum  GivenPoint {
     TS_END_OF_CONSTRUCTOR,
@@ -24,6 +26,10 @@ export function insertAtGivenPoint(insersion: insertAtGivenPointInterface, orgin
             return insertAfterImports(insersion.insert,orginal);
         case GivenPoint.END_OF_IMPORTS:
             return insertAfterImports(insersion.insert,orginal);
+        case GivenPoint.END_OF_CSS:
+            return insertAtEndOfCss(insersion.insert,orginal);
+        case GivenPoint.END_OF_HTML:
+            return insertAtEndOfHtml(insersion.insert,orginal);
     }
 }
 
