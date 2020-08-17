@@ -1,6 +1,5 @@
 import { Rule, SchematicContext, Tree, apply, mergeWith, template, url } from '@angular-devkit/schematics';
 
-
 // Contains helper functions like dasherize classerize etc...
 import { strings } from "@angular-devkit/core";
 

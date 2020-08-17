@@ -10,7 +10,7 @@ export function getFormFieldHtml(opts:any){
     switch(opts.type){
       case 'select':
         return `
-          <mat-select formControlName='${ capitalize(opts['object_name']) }Id'>
+          <mat-select formControlName='${ capitalize(opts['name']) }Id'>
             <mat-option *ngFor='let o of ${ Pluralize(opts['object_name']) }' [value]='o.id'>
               {{ o.${opts['object_name']}_name }}
             <mat-option>
@@ -19,20 +19,20 @@ export function getFormFieldHtml(opts:any){
         case 'number':
         return `
             <mat-form-field>
-              <input matInput type='number' min='0' max='10' step='1'>
+              <input matInput formControlName='${ capitalize(opts['name']) } type='number' min='0' max='10' step='1'>
             <mat-form-field>
             `
         case 'text':
             return `
             <mat-form-field>
-              <input matInput type='text' placeholder=''>
+              <input matInputformControlName='${ capitalize(opts['_name']) } type='text' placeholder=''>
             </mat-form-field>
         `
         case 'textarea':
           return `
           <mat-form-field>
             <mat-label>Leave a comment</mat-label>
-            <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+            <textarea formControlName='${ capitalize(opts['name']) } matInput placeholder="Ex. It makes me feel..."></textarea>
           </mat-form-field>
         `
       default:

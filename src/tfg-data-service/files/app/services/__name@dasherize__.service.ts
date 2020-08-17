@@ -17,15 +17,15 @@ export class <%= classify(name) %>Service {
   }
 
   loadAll(query): Promise<any>{
-    return this.http.get(this.api + '/<%=classify(name)%>' + '/' + toQueryString(query)).toPromise();
+    return this.http.get(this.api + '/<%=classify(name)%>' + toQueryString(query)).toPromise();
   }
 
   create(data): Promise<any>{
     return this.http.post(this.api + '/<%=classify(name)%>', data).toPromise();
   }
 
-  delete(): Promise<any>{
-    return this.http.delete(this.api + '/<%=classify(name)%>').toPromise();
+  delete(id: number): Promise<any>{
+    return this.http.delete(this.api + '/<%=classify(name)%>' + '/' + id).toPromise();
   }
 
   update(data): Promise<any>{

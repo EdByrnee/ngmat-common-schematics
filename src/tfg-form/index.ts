@@ -29,6 +29,10 @@ export function main(_options: Schema): Rule {
     // We obviously can't get an array input using the schematics cli
     let fields:any = getUserOptionsObject(_options.fields);
 
+    console.log("Creating a form at the path " + _options.path);
+    console.log("Creating a form with the name " + _options.form_name);
+    console.log("Creating with the fields " + fields);
+
 
     // Let's begin ...
     let html_insersions = makeHtml(_options.form_name, fields);
@@ -142,17 +146,6 @@ function makeHtml(form_name:string, fields: any[]): insertAtGivenPointInterface[
 ///////////////////////////////////////////////////////////////////////////////////
 //                            HELPER FUNCTIONS                                   //
 ///////////////////////////////////////////////////////////////////////////////////
-
-
-
-function removeFinalChar(ts:any ,char: any){
-  let final_occur = ts.lastIndexOf(char);
-
-  ts = ts.substr(0,final_occur) + ts.substring(final_occur + 1);
-
-  return ts;
-}
-
 function afterSlash(stringVariable:string){
   return  stringVariable.substring(stringVariable.lastIndexOf('/'));
 }
