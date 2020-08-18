@@ -1,6 +1,6 @@
 
 
-# Tfg-common-schematics
+# Tfg-Mat(erial)-Schematics
 
 1. Install the package into your angular-cli project
 2. Run any of the following:
@@ -24,7 +24,7 @@ Make sure you have both the tsc and typescript packages installed
     
 ## TFG-Page Component
 
-    schematics tfg-common-schematics:tfgpage --dry-run=false --path=output/test-page/page-list
+    tfg-mat-schematics:tfg-page --dry-run=false --path users/users-list
     
 
 Creates a page which:
@@ -138,6 +138,11 @@ When a filter component is changed, this updates the query parameters.
 
 
 
+## Development
+Make sure you have both the tsc and typescript packages installed 
+
+    schematics .:tfg-page --dry-run=false --path=../../output/test-page/page-list
+
 ## Publish an update
 
 1. Update package version 0.0.4 -> 0.0.5
@@ -147,11 +152,6 @@ When a filter component is changed, this updates the query parameters.
 2. Run the following to publish changes
     - npm publish
 
-
-## Development
-Make sure you have both the tsc and typescript packages installed 
-
-    schematics .:tfg-page --dry-run=false --path=../../output/test-page/page-list
     
 #### List and create page
     ng g module jobs

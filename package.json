@@ -1,6 +1,6 @@
 {
-  "name": "tfg-material-schematics",
-  "version": "0.0.23",
+  "name": "tfg-mat-schematics",
+  "version": "0.0.26",
   "description": "A blank schematics",
   "scripts": {
     "build": "tsc -p tsconfig.json",

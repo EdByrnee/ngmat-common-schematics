@@ -1,6 +1,7 @@
-import { Component, OnInit } from '../../../../../tfg-data-service/files/src/app/__path@dasherize__-page/node_modules/@angular/core';
-import { ActivatedRoute, Router } from '../../../../../tfg-data-service/files/src/app/__path@dasherize__-page/node_modules/@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar}  from '@angular/material/snack-bar';
+import { DataService } from 'src/app/_services/data.service';
 
 <% const name = path.split("/").pop(); %>
 
@@ -12,34 +13,45 @@ import { MatSnackBar}  from '@angular/material/snack-bar';
 export class <%= classify(name) %>PageComponent implements OnInit {
 
   loading:boolean = false;
-  error:boolean = true;
+  error:boolean = false;
 
   constructor(
     private dataService: DataService,
-    private snackbar: SnackbarService,
+    private snackbar: MatSnackBar,
     private route: ActivatedRoute,
     private router: Router) {
-      super(snackbar);
   }
   
   ngOnInit() {
     this.initPageLoad();
   }
 
+  data;
   initPageLoad(){
     this.loading = true;
     this.error = false;
     return Promise.all([
-      this.loadData()
+      this.load<%= classify(name) %>()
     ]).then(data=>{
       this.loading = false;
     }).catch(err=>{
-      this.handleHttpError(err,true);
+      this.handlePageError(err,true);
+      switch(err.status){
+        default:
+        this.snackbar.open('There was an eror loading the page, please try again later', 'DISMISS', {'duration': 3000})
+      }
     })
   }
 
-  loadData(){
-    return this.dataService.loadObjects({
+  handlePageError(err,fullPageError){
+    console.log(err);
+    this.error = fullPageError;
+  }
+
+
+  load<%= classify(name) %>(){
+    return Promisel.resolve();
+    return this.dataService.loadObject({
       'limit' : 1000
     }).then(data=>{
       this.data = data['data'];
