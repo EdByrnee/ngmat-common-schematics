@@ -1,3 +1,3 @@
 import { Rule } from '@angular-devkit/schematics';
-import { Schema } from './schema.d';
+import { Schema } from './schema';
 export declare function tfgdatatable(_options: Schema): Rule;

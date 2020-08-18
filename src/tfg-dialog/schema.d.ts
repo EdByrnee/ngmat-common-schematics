@@ -8,6 +8,4 @@ export interface Schema {
      */
     name: string;
     path: string;
-    columns: string;
-    paginator: boolean
 }

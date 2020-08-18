@@ -1,5 +1,5 @@
 import * as Pluralize from 'pluralize';
-import { capitalize } from '@angular-devkit/core/src/utils/strings';
+//import { capitalize } from '@angular-devkit/core/src/utils/strings';
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -10,29 +10,29 @@ export function getFormFieldHtml(opts:any){
     switch(opts.type){
       case 'select':
         return `
-          <mat-select formControlName='${ capitalize(opts['name']) }Id'>
+          <mat-select formControlName='${ opts['name'] }'>
             <mat-option *ngFor='let o of ${ Pluralize(opts['object_name']) }' [value]='o.id'>
-              {{ o.${opts['object_name']}_name }}
+              {{ o.${ opts['object_name'] }_name }}
             <mat-option>
           <mat-select>
           `
         case 'number':
         return `
             <mat-form-field>
-              <input matInput formControlName='${ capitalize(opts['name']) } type='number' min='0' max='10' step='1'>
+              <input matInput formControlName='${ opts['name'] }' type='number' min='0' max='10' step='1'>
             <mat-form-field>
             `
         case 'text':
             return `
             <mat-form-field>
-              <input matInputformControlName='${ capitalize(opts['name']) } type='text' placeholder=''>
+              <input matInput formControlName='${ opts['name'] }' type='text' placeholder=''>
             </mat-form-field>
         `
         case 'textarea':
           return `
           <mat-form-field>
             <mat-label>Leave a comment</mat-label>
-            <textarea formControlName='${ capitalize(opts['name']) } matInput placeholder="Ex. It makes me feel..."></textarea>
+            <textarea formControlName='${ opts['name'] }' matInput placeholder="Ex. It makes me feel..."></textarea>
           </mat-form-field>
         `
       default:

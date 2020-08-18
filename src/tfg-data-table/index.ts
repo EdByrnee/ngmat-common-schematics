@@ -16,7 +16,7 @@ import { SchematicsException } from '@angular-devkit/schematics';
 // schematics .:tfg-data-table --dry-run=false --path=output/test-page/page-list-page --name=AccountsList --columns=account_name*n,account_type_name*n,count*n
 
 
-import { Schema } from './schema.d';
+import { Schema } from './schema';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.

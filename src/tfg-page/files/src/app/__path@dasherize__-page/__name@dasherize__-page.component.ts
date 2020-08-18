@@ -32,9 +32,7 @@ export class <%= classify(name) %>PageComponent implements OnInit {
     return Promise.all([
       this.loadData()
     ]).then(data=>{
-      this.snackbar.open("Successfully loaded data for page","DISMISS", {'duration' : 3000});
       this.loading = false;
-      this.error = true;
     }).catch(err=>{
       this.handleHttpError(err,true);
     })

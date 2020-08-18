@@ -95,7 +95,7 @@ function makeTypescript(form_name:string, fields:any[]): insertAtGivenPointInter
   // Init the form group in the constructor
   let form_ts = '';
   for (let f of fields){
-    form_ts = form_ts + `"${ f.field_name}" : [null]`
+    form_ts = form_ts + `"${ f.name}" : [null],\n`
   }
   let constructor_ts = `
     this.${ form_name } = new FormGroup({
@@ -107,7 +107,7 @@ function makeTypescript(form_name:string, fields:any[]): insertAtGivenPointInter
   return [
     {
       insert: constructor_ts,
-      at: GivenPoint.TS_END_OF_CONSTRUCTOR
+      at: GivenPoint.INSIDE_CONSTRUCTOR
     },
     {
       insert: form_group_var,

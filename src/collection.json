@@ -8,12 +8,12 @@
     },
     "tfg-data-table": {
       "description": "A basic data table.",
-      "factory": "./tfgdatatable/index#tfgdatatable",
-      "schema": "./tfgdatatable/schema.json"
+      "factory": "./tfg-data-table/index#tfgdatatable",
+      "schema": "./tfg-data-table/schema.json"
     },
     "tfg-dialog": {
       "description": "A basic dialog",
-      "factory": "./tfg-dialog/index#tfgdialog",
+      "factory": "./tfg-dialog/index#main",
       "schema": "./tfg-dialog/schema.json"
     },
     "tfg-page": {

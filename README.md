@@ -8,13 +8,13 @@
     - schematics tfg-common-schematics:tfgdialog
 
 ## Development
+See dev header at end of Readme
 Make sure you have both the tsc and typescript packages installed 
 
     schematics .:tfg-page --dry-run=false --path=../../output/test-page/page-list
     
 
-    schematics .:tfgpage --dry-run=false --path=../../output/test-page/page-list
-    
+    schematics .:tfgpage --dry-run=false --path=../../output/test-page/page-list   
 
 
 #### Running the schematics
@@ -35,7 +35,7 @@ Creates a page which:
 - onPageLoad() function for init page data load
 
 
-## TFG-Page Component
+## TFG-Form Component
 
     schematics tfg-common-schematics:tfg-form --dry-run=false --path=output/test-page/page-list-page --fields=type:text*name:job_name,type:select*name:JobId*object_name:job
     (dev) schematics .:tfg-form --dry-run=false --path=output/test-page/page-list-page --form_name=newJobsFormGroup --fields=type:text*name:job_name
@@ -146,3 +146,15 @@ When a filter component is changed, this updates the query parameters.
     - npm run build
 2. Run the following to publish changes
     - npm publish
+
+
+## Development
+Make sure you have both the tsc and typescript packages installed 
+
+    schematics .:tfg-page --dry-run=false --path=../../output/test-page/page-list
+    
+#### List and create page
+    ng g module jobs
+    schematics .:tfg-page --dry-run=false --path=../../output/jobs/jobs-list
+    schematics .:tfg-form --dry-run=false --path=/output/jobs/jobs-list-page --form_name=newJobFormGroup --fields=type:text*name:job_name,type:select*name:ClientId*object_name:client,type:number*name:job_budget,type:textarea*name:job_comment
+    schematics .:tfg-dialog --dry-run=false --path=/output/jobs/jobs-list-page --name=newJob

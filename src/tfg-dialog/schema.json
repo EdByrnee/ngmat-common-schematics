@@ -15,13 +15,13 @@
 			"x-prompt" : "The path of the component to add the table to e.g. src/app/accounts/accounts-list"
 		},
 		"name": {
-			"description": "Name of dialog eg. CreateAccount",
+			"description": "Name of dialog eg. CreateJob",
 			"type": "string",
 			"$default": {
 				"$source": "argv",
 				"index": 0
 			},
-			"x-prompt" : "Name of dialog eg. CreateAccount"
+			"x-prompt" : "Name of dialog eg. CreateJob"
 		}
 	},
 	"required": [
