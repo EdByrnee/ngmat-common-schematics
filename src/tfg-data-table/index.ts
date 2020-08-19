@@ -17,6 +17,7 @@ import { SchematicsException } from '@angular-devkit/schematics';
 
 
 import { Schema } from './schema';
+import { classify } from '@angular-devkit/core/src/utils/strings';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
@@ -133,6 +134,16 @@ function makeCSS(){
     width: 100%;
   }
 
+  .mat-row:hover {
+    background-color: #e3e3e3;
+    cursor: pointer;
+  }
+
+  .page{
+    position: relative;
+    top: -48px;
+  }
+
 
 `
   return css;
@@ -155,6 +166,7 @@ function makeTypescript(name:any, column_names: string[]){
     let order_by_var_name = ClassToUnderscore(name + "OrderBy");
     let order_direction_var_name = ClassToUnderscore(name + "OrderDirection");
     let loadDataFunctionName = "load" + name + "TableData";
+    let subscribeToQueryParams = "subQueryParams" + classify(name) + "TableData";
 
 
   column_names = column_names.map(cn=>{
@@ -206,21 +218,27 @@ let ts = `
 
 
   ${ loadDataFunctionName}(){
-    this.dataService.loadDemo({
+    return this.dataService.loadDemo({
         orderBy: this.${ order_by_var_name },
         orderDirection: this.${ order_direction_var_name },
         limit: this.${table_limit_var_name},
         page: this.${table_current_page_var_name}
     }).then(data=>{
 
-      this.${table_data_var_name} = data['data'];
-      this.${table_limit_var_name} = data['limit'];
-      this.${table_count_var_name} = data['count'];
-      this.${table_current_page_var_name} = data['page'];
-
+      this.${table_data_var_name} = data['data'].rows;
+      this.${table_limit_var_name} = data['data'].limit;
+      this.${table_count_var_name} = data['data'].count;
+      this.${table_current_page_var_name} = data['data'].page;
     })
   }
-  
+
+  ${ subscribeToQueryParams}(){
+        this.route.queryParams.subscribe(data=>{
+        this.users_list_current_page = data["page"] || 1;
+        this.users_list_limit = data["limit"] || 2;
+        this.initPageLoad();
+      })
+    }
   /////////////////////////////////////////
   // ${name.toUpperCase()} TABLE ABOVE
   /////////////////////////////////////////

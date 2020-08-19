@@ -5,31 +5,31 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class <%= classify(name) %>Service {
+export class <%= classify(pluralize(name)) %>Service {
 
   api:string; 
   constructor(private http: HttpClient) {
-    this.api = environment.company_api + "/portal/public";
+    this.api = environment.company_api + "portal/public";
   }
 
-  loadById(id): Promise<any>{
-    return this.http.get(this.api + '/<%=classify(name)%>' + '/' + id).toPromise();
+  load<%= classify(name) %>ById(id): Promise<any>{
+    return this.http.get(this.api + '/<%= underscore(pluralize(name)) %>/' + id).toPromise();
   }
 
-  loadAll(query): Promise<any>{
-    return this.http.get(this.api + '/<%=classify(name)%>' + toQueryString(query)).toPromise();
+  load<%= classify(pluralize(name)) %>(query): Promise<any>{
+    return this.http.get(this.api + '/<%= underscore(pluralize(name)) %>' + toQueryString(query)).toPromise();
   }
 
-  create(data): Promise<any>{
-    return this.http.post(this.api + '/<%=classify(name)%>', data).toPromise();
+  create<%= classify(name) %>(data): Promise<any>{
+    return this.http.post(this.api + '/<%= underscore(pluralize(name)) %>', data).toPromise();
   }
 
-  delete(id: number): Promise<any>{
-    return this.http.delete(this.api + '/<%=classify(name)%>' + '/' + id).toPromise();
+  delete<%= classify(name) %>(id: number): Promise<any>{
+    return this.http.delete(this.api + '/<%= underscore(pluralize(name)) %>/' + id).toPromise();
   }
 
-  update(data): Promise<any>{
-    return this.http.post(this.api + '/<%=classify(name)%>' + '/' + id, data).toPromise();
+  update<%= classify(name) %>(id,data): Promise<any>{
+    return this.http.post(this.api + '/<%= underscore(pluralize(name)) %>/' + id, data).toPromise();
   }
 
 
@@ -41,6 +41,6 @@ export class <%= classify(name) %>Service {
 function toQueryString(json){
   let query = "?";
   Object.keys(json).forEach(key=>{
-    query += key + '=' + json[key]
+    if (json[key]) query += key + '=' + json[key] + "&";
   })
 }

@@ -3,11 +3,11 @@
 </div>
 
 <!-- Page header -->
-<tfg-page-header
+<app-page-header *ngIf="!loading"
 [error]="error"
 [errorText]="'There was an error while loading this page'"
-[title]="'<%= name %> Page'">
-</tfg-page-header>
+[title]="'<%= camelize(name) %> Page'">
+</app-page-header>
 
 <!-- Main content (page) -->
 <div *ngIf="!loading" class="page">

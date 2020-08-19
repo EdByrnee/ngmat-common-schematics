@@ -49,15 +49,4 @@ export class <%= classify(name) %>PageComponent implements OnInit {
   }
 
 
-  load<%= classify(name) %>(){
-    return Promisel.resolve();
-    return this.dataService.loadObject({
-      'limit' : 1000
-    }).then(data=>{
-      this.data = data['data'];
-    })
-  }
-
-
-
 }
