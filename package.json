@@ -1,7 +1,7 @@
 {
-  "name": "tfg-mat-schematics",
-  "version": "0.0.28",
-  "description": "A blank schematics",
+  "name": "edbyrnee-mat-schematics",
+  "version": "0.0.1",
+  "description": "Custom Material Design Schematics",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json --watch",
