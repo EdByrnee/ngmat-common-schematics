@@ -25,6 +25,11 @@
       "description": "Form and form Group",
       "factory": "./tfg-form/index#main",
       "schema": "./tfg-form/schema.json"
+    },
+    "tfg-version-check-service": {
+      "description": "TFG version check service",
+      "factory": "./tfg-version-check-service/index#main",
+      "schema": "./tfg-version-check-service/schema.json"
     }
   }
 }

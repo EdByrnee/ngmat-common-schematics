@@ -1,0 +1,30 @@
+{
+	"$schema": "http://json-schema.org/schema",
+	"id": "HelloSchematics",
+	"title": "Angular Workspace Options Schema",
+	"description" : "Create a page",
+	"type": "object",
+	"properties": {
+		"url": {
+			"description": "Version check url e.g. https://portal.tfgwebstaging.co.uk",
+			"type": "string",
+			"$default": {
+				"$source": "argv",
+				"index": 0
+			},
+			"x-prompt" : "Version check url"
+		},
+		"interval ": {
+			"description": "Version check interval in millis e.g. 1800000",
+			"type": "string",
+			"$default": {
+				"$source": "argv",
+				"index": 0
+			},
+			"x-prompt" : "Version check url"
+		}
+	},
+	"required": [
+		"url"
+	]
+}
