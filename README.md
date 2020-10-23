@@ -3,28 +3,34 @@
 # Tfg-Mat(erial)-Schematics
 
 1. Install the package into your angular-cli project
+    - npm install --save tfg-mat-schematics
 2. Run any of the following:
-    - schematics tfg-common-schematics:tfgdatatable --dry-run=false --path=output/accounts/accounts-list --name=AccountsList --columns=account_name*n,account_type_name*n,count*n
-    - schematics tfg-common-schematics:tfgdialog
+    - schematics tfg-mat-schematics:tfgdatatable --dry-run=false --path=output/accounts/accounts-list --name=AccountsList --columns=account_name*n,account_type_name*n,count*n
+    - schematics tfg-mat-schematics:tfgdialog
 
 ## Development
-See dev header at end of Readme
 Make sure you have both the tsc and typescript packages installed 
 
     schematics .:tfg-page --dry-run=false --path=../../output/test-page/page-list
-    
 
-    schematics .:tfgpage --dry-run=false --path=../../output/test-page/page-list   
+*Publish an update*
+
+1. Update package version 0.0.4 -> 0.0.5
+    - npm version patch
+2. Run the following to complie
+    - npm run build
+2. Run the following to publish changes
+    - npm publish
 
 
-#### Running the schematics
+*Test running the schematics*
 
-    schematics tfg-common-schematics:tfgpage --dry-run=false --path=output/accounts/accounts-list 
+    schematics edbyrnee-mat-schematics:tfg-page --dry-run=false --path jobs/jobs-list
 
     
 ## TFG-Page Component
 
-    tfg-mat-schematics:tfg-page --dry-run=false --path users/users-list
+    edbyrnee-mat-schematics:tfg-page --path users/users-list
     
 
 Creates a page which:
@@ -62,7 +68,7 @@ Choose from from:
 
 Also provide the path and name/options of each formControl
 
-    schematics tfg-common-schematics:tfg-form --dry-run=false --path=output/test-page/page-list
+    schematics edbyrnee-mat-schematics:tfg-form --dry-run=false --path=output/test-page/page-list
 
 
 
@@ -70,7 +76,7 @@ Also provide the path and name/options of each formControl
 Provide the column names and create a data table.
 #### Example
 
-    schematics tfg-common-schematics:tfgdatatable --dry-run=false --path=output/accounts/accounts-list --name=AccountsList --columns=account_name*n,account_type_name*n,count*n
+    schematics edbyrnee-mat-schematics:tfgdatatable --dry-run=false --path=output/accounts/accounts-list --name=AccountsList --columns=account_name*n,account_type_name*n,count*n
 
 #### Displayed Columns
 Provide a list of column names, along with if you wish to enable sorting. By default this column will show the property of this name on the element.
@@ -138,19 +144,6 @@ When a filter component is changed, this updates the query parameters.
 
 
 
-## Development
-Make sure you have both the tsc and typescript packages installed 
-
-    schematics .:tfg-page --dry-run=false --path=../../output/test-page/page-list
-
-## Publish an update
-
-1. Update package version 0.0.4 -> 0.0.5
-    - npm version patch
-2. Run the following to complie
-    - npm run build
-2. Run the following to publish changes
-    - npm publish
 
     
 #### List and create page

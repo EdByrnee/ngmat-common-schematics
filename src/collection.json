@@ -30,6 +30,11 @@
       "description": "TFG version check service",
       "factory": "./tfg-version-check-service/index#main",
       "schema": "./tfg-version-check-service/schema.json"
+    },
+    "tfg-http-intercept": {
+      "description": "Basic http intercept",
+      "factory": "./tfg-http-intercept/index#main",
+      "schema": "./tfg-http-intercept/schema.json"
     }
   }
 }
