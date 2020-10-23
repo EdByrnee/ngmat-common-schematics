@@ -17,7 +17,7 @@ export function main(_options: Schema): Rule {
       // Create the insersions
       let NEW_PROVIDER = `    AuthService,`
       let NEW_IMPORT = `import { AuthService } from './auth.service';`
-      let TS_PATH = "/app/app.module.ts";
+      let TS_PATH = "/src/app/app.module.ts";
 
 
 
