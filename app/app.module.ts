@@ -22,6 +22,7 @@ import { SettingsModule } from './settings/settings.module';
 import { MessagesService } from './messages/message.service';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { HttpConfigInterceptor } from './http-intercept.service';
+import { AuthService } from './auth.service';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { HttpConfigInterceptor } from './http-intercept.service';
     HttpClientModule
   ],
   providers: [
+    AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
     JobsService,
     SurveysService,

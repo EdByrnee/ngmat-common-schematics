@@ -35,6 +35,11 @@
       "description": "Basic http intercept",
       "factory": "./tfg-http-intercept/index#main",
       "schema": "./tfg-http-intercept/schema.json"
+    },
+    "tfg-auth-service": {
+      "description": "Basic auth service",
+      "factory": "./tfg-auth-service/index#main",
+      "schema": "./tfg-auth-service/schema.json"
     }
   }
 }

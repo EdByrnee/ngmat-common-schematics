@@ -1,0 +1,11 @@
+{
+	"$schema": "http://json-schema.org/schema",
+	"id": "HelloSchematics",
+	"title": "Angular Workspace Options Schema",
+	"description" : "Create a basic http intercept",
+	"type": "object",
+	"properties": {
+	},
+	"required": [
+	]
+}
