@@ -1,8 +1,8 @@
 export function insertAfterImports(insersion:string, original:string): string{
 
     // Find the position of the end of the constructor
-    let end_of_imports_num = original.lastIndexOf("import")
-    let next_line_after_last_import = original.substr(end_of_imports_num).search("/n");
+    let end_of_imports_num = original.lastIndexOf("import {")
+    let next_line_after_last_import = original.substr(end_of_imports_num,original.length).search("\n");
 
     let insert_point_num = end_of_imports_num + next_line_after_last_import;
 

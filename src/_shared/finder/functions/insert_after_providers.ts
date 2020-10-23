@@ -1,8 +1,9 @@
 export function insertAfterProviders(insersion:string, original:string): string{
 
     // Find the position of the end of the constructor
-    let end_of_imports_num = original.lastIndexOf("providers")
-    let next_line_after_last_import = original.substr(end_of_imports_num).search("/n");
+    let s = "providers";
+    let end_of_imports_num = original.lastIndexOf(s) + s.length + 1
+    let next_line_after_last_import = original.substr(end_of_imports_num,original.length).search("\n");
 
     let insert_point_num = end_of_imports_num + next_line_after_last_import;
 

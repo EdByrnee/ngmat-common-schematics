@@ -5,7 +5,8 @@ export declare enum GivenPoint {
     END_OF_IMPORTS = 3,
     END_OF_CSS = 4,
     END_OF_HTML = 5,
-    INSIDE_CONSTRUCTOR = 6
+    INSIDE_CONSTRUCTOR = 6,
+    AFTER_PROVIDERS = 7
 }
 export interface insertAtGivenPointInterface {
     at: GivenPoint;

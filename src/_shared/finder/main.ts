@@ -38,7 +38,7 @@ export function insertAtGivenPoint(insersion: insertAtGivenPointInterface, orgin
         case GivenPoint.INSIDE_CONSTRUCTOR:
             return insertInsideConstructor(insersion.insert,orginal);
         case GivenPoint.AFTER_PROVIDERS:
-                return insertAfterProviders(insersion.insert,orginal);
+             return insertAfterProviders(insersion.insert,orginal);
     }
 }
 

@@ -1,4 +1,4 @@
-import { Rule, SchematicContext, Tree, apply, mergeWith, template, url } from '@angular-devkit/schematics';
+import { Rule, SchematicContext, Tree, apply, mergeWith, template, url, SchematicsException } from '@angular-devkit/schematics';
 
 // Contains helper functions like dasherize classerize etc...
 import { strings } from "@angular-devkit/core";
@@ -15,21 +15,25 @@ export function main(_options: Schema): Rule {
       const sourceTemplates = url("./files");
 
       // Create the insersions
-      let NEW_PROVIDER = `{ provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }`
+      let NEW_PROVIDER = `    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },`
       let NEW_IMPORT = `import { HttpConfigInterceptor } from './http-intercept.service';`
-      let TS_PATH = "/app/app.module.ts";
-      let ORIGINAL_TS = tree.read(TS_PATH);
+      let TS_PATH = "/src/app/app.module.ts";
 
+
+
+      let ORIGINAL_TS:any = tree.read(TS_PATH);
+      if (!ORIGINAL_TS) throw new SchematicsException(`file does not exist at ` + TS_PATH);
+      ORIGINAL_TS = ORIGINAL_TS.toString("utf-8");;
 
 
       // Configure the insersions
       let ts_insersions = [
         {
-          insert: NEW_PROVIDER,
+          insert: NEW_IMPORT,
           at: GivenPoint.END_OF_IMPORTS
         },
         {
-          insert: NEW_IMPORT,
+          insert: NEW_PROVIDER,
           at: GivenPoint.AFTER_PROVIDERS
         }
       ]
