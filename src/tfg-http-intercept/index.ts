@@ -30,7 +30,7 @@ export function main(_options: Schema): Rule {
         },
         {
           insert: NEW_IMPORT,
-          at: GivenPoint.END_OF_IMPORTS
+          at: GivenPoint.AFTER_PROVIDERS
         }
       ]
 

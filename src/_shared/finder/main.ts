@@ -3,6 +3,7 @@ import { insertAtEndOfCss } from './functions/insert_end_of_css';
 import { insertAtEndOfHtml } from './functions/insert_end_of_html';
 import { insertInsideConstructor } from './functions/inside_constructor';
 import { insertEndOfVars } from './functions/insert_end_of_vars';
+import { insertAfterProviders } from './functions/insert_after_providers';
 
 export enum  GivenPoint {
     TS_END_OF_CONSTRUCTOR,
@@ -11,7 +12,8 @@ export enum  GivenPoint {
     END_OF_IMPORTS,
     END_OF_CSS,
     END_OF_HTML,
-    INSIDE_CONSTRUCTOR
+    INSIDE_CONSTRUCTOR,
+    AFTER_PROVIDERS
 }
 
 export interface insertAtGivenPointInterface{
@@ -35,6 +37,8 @@ export function insertAtGivenPoint(insersion: insertAtGivenPointInterface, orgin
             return insertAtEndOfHtml(insersion.insert,orginal);
         case GivenPoint.INSIDE_CONSTRUCTOR:
             return insertInsideConstructor(insersion.insert,orginal);
+        case GivenPoint.AFTER_PROVIDERS:
+                return insertAfterProviders(insersion.insert,orginal);
     }
 }
 
