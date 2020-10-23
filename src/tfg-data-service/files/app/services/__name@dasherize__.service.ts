@@ -43,4 +43,5 @@ function toQueryString(json){
   Object.keys(json).forEach(key=>{
     if (json[key]) query += key + '=' + json[key] + "&";
   })
+  return query;
 }
