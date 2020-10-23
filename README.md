@@ -151,3 +151,9 @@ When a filter component is changed, this updates the query parameters.
     schematics .:tfg-page --dry-run=false --path=../../output/jobs/jobs-list
     schematics .:tfg-form --dry-run=false --path=/output/jobs/jobs-list-page --form_name=newJobFormGroup --fields=type:text*name:job_name,type:select*name:ClientId*object_name:client,type:number*name:job_budget,type:textarea*name:job_comment
     schematics .:tfg-dialog --dry-run=false --path=/output/jobs/jobs-list-page --name=newJob
+
+
+## TFG-Http Intercept 
+A basic http intercept service, no refresh token
+
+    schematics edbyrnee-mat-schematics:tfg-http-intercept
